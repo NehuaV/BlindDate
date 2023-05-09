@@ -2,7 +2,7 @@ name: CD
 
 on:
   push:
-    branches: ["kubernetes"]
+    branches: ["main"]
   pull_request:
     types: [opened, synchronize]
 
@@ -26,20 +26,9 @@ jobs:
           username: ${{ secrets.ACR_USERNAME }}
           password: ${{ secrets.ACR_PASSWORD }}
 
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Cache Docker layers
-        uses: actions/cache@v2
-        with:
-          path: /tmp/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-
-
       - name: Build docker images
         run: |
-          DOCKER_BUILDKIT=1 docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} build --parallel
+          docker-compose -f ${{ env.DOCKER_COMPOSE_FILE }} build
 
       - name: Push Docker images to ACR
         run: |

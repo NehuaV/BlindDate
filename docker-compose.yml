@@ -13,9 +13,9 @@ services:
     networks:
       - app_network
     environment:
-      - NEXT_PUBLIC_POST_SERVICE_URL=http://post-service:3003
-      - NEXT_PUBLIC_USER_SERVICE_URL=http://user-service:3002
-      - NEXT_PUBLIC_COMMENT_SERVICE_URL=http://comment-service:3004
+      - NEXT_PUBLIC_POST_SERVICE_URL=http://post-service:3003/post
+      - NEXT_PUBLIC_USER_SERVICE_URL=http://user-service:3002/user
+      - NEXT_PUBLIC_COMMENT_SERVICE_URL=http://comment-service:3004/comment
 
   upload-service:
     container_name: upload-service
