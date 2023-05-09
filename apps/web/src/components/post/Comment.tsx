@@ -6,10 +6,9 @@ import { useRouter } from "next/router";
 export default function Comment() {
   const { query, isReady } = useRouter();
   const { postID } = query;
-  const { data: comments, error } = useSWR(
-    isReady ? `http://localhost:3004/comment/byPostID/${postID}` : null,
-    fetcher
-  );
+  const URL =
+    process.env.NEXT_PUBLIC_COMMENT_SERVICE_URL + `/byPostID/${postID}`;
+  const { data: comments, error } = useSWR(isReady ? URL : null, fetcher);
 
   if (error) return <div>Error: {error?.message}</div>;
 
