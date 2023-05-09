@@ -6,6 +6,7 @@ const port = process.env.NEXT_PUBLIC_POST_SERVICE_URL || 3003;
 const endPoint = process.env.NODE_ENV === "production" ? "/" : "/post";
 const server = createServer();
 
+// Start the server
 server.listen(port, () => {
   log(`api running on ${port}`);
 });
