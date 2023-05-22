@@ -1,26 +1,26 @@
 version: "3"
 
 services:
-  web:
-    container_name: web
-    build:
-      context: .
-      dockerfile: ./apps/web/Dockerfile
-    image: web:latest
-    restart: always
-    ports:
-      - 3000:3000
-    networks:
-      - app_network
-    environment:
-      - NEXT_PUBLIC_GATEWAY=http://localhost:8080
-      - AUTH0_BASE_URL=http://localhost:3000
-      - AUTH0_SECRET=tJSN-FZrXT6RNOTmC8RYfOnnb7udWlOiHrDfogqJZZjqS4pz9ypEJiJLkfr54VMr
-      - AUTH0_ISSUER_BASE_URL=https://dev-5citnzhh5o3wou8l.eu.auth0.com
-      - AUTH0_CLIENT_ID=cgVtxmQp5rL4G0CnwSs6uBJfV1mWGbX3
-      - AUTH0_CLIENT_SECRET=tJSN-FZrXT6RNOTmC8RYfOnnb7udWlOiHrDfogqJZZjqS4pz9ypEJiJLkfr54VMr
-      - NEXTAUTH_SECRET=YAFRg5wxr565mAeCEifXT9RfjmSXOOt4IV3Db1+e/3o=
-      - DATABASE_URL=mongodb+srv://webdeveloper:24IPXOmgrD4mIToV@clusterblinddate.qm39mdu.mongodb.net/test
+  # web:
+  #   container_name: web
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/web/Dockerfile
+  #   image: web:latest
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - app_network
+  #   environment:
+  #     - NEXT_PUBLIC_GATEWAY=http://localhost:8080
+  #     - AUTH0_BASE_URL=http://localhost:3000
+  #     - AUTH0_SECRET=tJSN-FZrXT6RNOTmC8RYfOnnb7udWlOiHrDfogqJZZjqS4pz9ypEJiJLkfr54VMr
+  #     - AUTH0_ISSUER_BASE_URL=https://dev-5citnzhh5o3wou8l.eu.auth0.com
+  #     - AUTH0_CLIENT_ID=cgVtxmQp5rL4G0CnwSs6uBJfV1mWGbX3
+  #     - AUTH0_CLIENT_SECRET=tJSN-FZrXT6RNOTmC8RYfOnnb7udWlOiHrDfogqJZZjqS4pz9ypEJiJLkfr54VMr
+  #     - NEXTAUTH_SECRET=YAFRg5wxr565mAeCEifXT9RfjmSXOOt4IV3Db1+e/3o=
+  #     - DATABASE_URL=mongodb+srv://webdeveloper:24IPXOmgrD4mIToV@clusterblinddate.qm39mdu.mongodb.net/test
 
   user-service:
     container_name: user-service
