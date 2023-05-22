@@ -3,25 +3,6 @@ import { NextApiRequest, NextApiResponse } from "next/types";
 import { prisma } from "@/server/db";
 import { env } from "@/env.mjs";
 
-// type Session = {
-//   user: {
-//     nickname: string;
-//     name: string;
-//     picture: string;
-//     updated_at: string;
-//     email: string;
-//     email_verified: boolean;
-//     sub: string;
-//     sid: string;
-//   };
-//   accessToken: string;
-//   accessTokenScope: string;
-//   accessTokenExpiresAt: string;
-//   refreshToken: string;
-//   idToken: string;
-//   token_type: string;
-// };
-
 const afterCallback = async (
   req: NextApiRequest,
   res: NextApiResponse,
