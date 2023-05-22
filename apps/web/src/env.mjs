@@ -9,7 +9,10 @@ const server = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]),
   // Add `.min(1) on ID and SECRET if you want to make sure they're not empty
   AUTH0_SECRET: z.string().min(1),
-  AUTH0_BASE_URL: z.string().url(),
+  AUTH0_BASE_URL: z.preprocess(
+    (str) => process.env.VERCEL_URL ?? str ?? "http://localhost:3000",
+    process.env.VERCEL ? z.string().min(1) : z.string().url()
+  ),
   AUTH0_ISSUER_BASE_URL: z.string().url(),
   AUTH0_CLIENT_ID: z.string().min(1),
   AUTH0_CLIENT_SECRET: z.string().min(1),
