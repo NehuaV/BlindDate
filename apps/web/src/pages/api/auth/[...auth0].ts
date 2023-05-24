@@ -1,7 +1,7 @@
 import { handleAuth, handleLogin, handleCallback } from "@auth0/nextjs-auth0";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { prisma } from "@/server/db";
-import { env } from "@/env.mjs";
+import auth0 from "@/server/auth0";
 
 const afterCallback = async (
   req: NextApiRequest,
@@ -33,7 +33,7 @@ const afterCallback = async (
   return session;
 };
 
-export default handleAuth({
+export default auth0.handleAuth({
   async callback(req, res) {
     try {
       await handleCallback(req, res, { afterCallback });
