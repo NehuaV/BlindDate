@@ -15,6 +15,7 @@ export default function Login() {
         quality={50}
         fill
         sizes="100vw"
+        unoptimized
         style={{ zIndex: -40, objectFit: "cover" }}
         alt={"Background image"}
       />
@@ -23,6 +24,7 @@ export default function Login() {
         alt={"Logo"}
         width={400}
         height={250}
+        unoptimized
         style={{ marginBottom: "1rem" }}
       />
 

@@ -4,12 +4,12 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import comment from "@/utils/comment";
 import { useState } from "react";
+import { env } from "@/env.mjs";
 
 export default function Comment() {
   const { query, isReady } = useRouter();
   const { postID } = query;
-  const URL =
-    process.env.NEXT_PUBLIC_COMMENT_SERVICE_URL + `/byPostID/${postID}`;
+  const URL = env.NEXT_PUBLIC_GATEWAY + `comment/byPostID/${postID}`;
   const { data: comments, error } = useSWR(isReady ? URL : null, fetcher);
 
   const [content, setContent] = useState("");
@@ -20,7 +20,7 @@ export default function Comment() {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    const URL = process.env.NEXT_PUBLIC_COMMENT_SERVICE_URL;
+    const URL = env.NEXT_PUBLIC_GATEWAY + "/comment";
     if (URL) {
       const created_at = new Date().toISOString();
       await comment(URL, {

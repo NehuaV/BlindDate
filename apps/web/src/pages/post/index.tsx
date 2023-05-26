@@ -2,6 +2,7 @@ import PostLayout from "@/layouts/PostLayout";
 import React, { useState } from "react";
 import post from "src/utils/post";
 import Image from "next/image";
+import { env } from "@/env.mjs";
 export default function PostPage() {
   const [files, setFile] = useState<File[]>([]);
   const [message, setMessage] = useState<string>("");
@@ -18,7 +19,7 @@ export default function PostPage() {
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
-    const URL = process.env.NEXT_PUBLIC_POST_SERVICE_URL;
+    const URL = env.NEXT_PUBLIC_GATEWAY + "/post";
     if (URL) {
       await post(URL, {
         title,
@@ -26,9 +27,7 @@ export default function PostPage() {
         picture_desc,
         anonymous,
         status: "ACTIVE",
-      }).then(async (result) => {
-        console.log(result);
-      });
+      }).then(async (result) => {});
     } else {
       console.error("URL is not defined.");
     }

@@ -8,6 +8,6 @@ module.exports = {
     outputFileTracingRoot: path.join(__dirname, "../../"),
   },
   images: {
-    domains: ["fastly.picsum.photos"],
+    domains: ["fastly.picsum.photos", "myprofilepage.com.au"],
   },
 };

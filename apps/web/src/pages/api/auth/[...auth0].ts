@@ -1,6 +1,7 @@
 import { handleAuth, handleLogin, handleCallback } from "@auth0/nextjs-auth0";
 import { NextApiRequest, NextApiResponse } from "next/types";
 import { prisma } from "@/server/db";
+import { env } from "@/env.mjs";
 
 // type Session = {
 //   user: {
@@ -32,8 +33,6 @@ const afterCallback = async (
       email: session.user.email,
     },
   });
-
-  console.log(session);
 
   if (!isUser) {
     const user = await prisma.user

@@ -1,14 +1,12 @@
 import { fetcher } from "../utils/fetcher";
-import { Post } from "../types/post";
 import useSWR from "swr";
+import { env } from "@/env.mjs";
 
 export function GetPosts() {
   const { data, error, isLoading } = useSWR(
-    `${process.env.NEXT_PUBLIC_POST_SERVICE_URL}`,
+    `${env.NEXT_PUBLIC_GATEWAY}/post`,
     fetcher
   );
-  // "http://localhost:8080/post"
-  // `${process.env.NEXT_PUBLIC_POST_SERVICE_URL}`
   return {
     data,
     error,

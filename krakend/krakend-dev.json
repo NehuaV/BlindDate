@@ -4,7 +4,12 @@
     "security/cors": {
       "allow_origins": ["*"],
       "allow_methods": ["GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"],
-      "expose_headers": ["Content-Length", "Content-Type"],
+      "expose_headers": [
+        "Content-Length",
+        "Content-Type",
+        "Authorization",
+        "X-Request-ID"
+      ],
       "allow_headers": [
         "Accept-Language",
         "Content-Type",
@@ -29,7 +34,14 @@
           "url_pattern": "/",
           "encoding": "json"
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
     },
     {
       "endpoint": "/comment",
@@ -39,7 +51,14 @@
           "url_pattern": "/",
           "encoding": "json"
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
     },
     {
       "endpoint": "/comment/byPostID/{id}",
@@ -49,23 +68,30 @@
           "url_pattern": "/byPostID/{id}",
           "encoding": "json"
         }
-      ]
-    },
-    {
-      "endpoint": "/user",
+      ],
       "extra_config": {
         "auth/validator": {
           "alg": "RS256",
           "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
           "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
         }
-      },
+      }
+    },
+    {
+      "endpoint": "/user",
       "backend": [
         {
           "host": "http://localhost:3002",
           "url_pattern": "/"
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
     }
   ]
 }
