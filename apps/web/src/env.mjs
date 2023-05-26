@@ -73,6 +73,7 @@ let env = /** @type {MergedOutput} */ (process.env);
 
 if (!!process.env.SKIP_ENV_VALIDATION == false) {
   const isServer = typeof window === "undefined";
+  console.log("AUTH0_BASE_URL:", process.env.AUTH0_BASE_URL);
 
   const parsed = /** @type {MergedSafeParseReturn} */ (
     isServer
