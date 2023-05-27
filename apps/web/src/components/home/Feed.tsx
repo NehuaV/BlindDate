@@ -1,5 +1,5 @@
 import { GetPosts } from "@/hooks/GetPosts";
-import { Post } from "src/types/post";
+import { PostSchema } from "src/types/post";
 import PostPreview from "@/components/PostPreview";
 
 interface FeedProps {
@@ -64,6 +64,7 @@ export default function Feed({ selectedFilter }: FeedProps) {
           username={post.authorUsername}
           created_at={post.created_at}
           status={post.status}
+          picture={post.picture}
         />
       ))}
     </>

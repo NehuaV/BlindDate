@@ -1,16 +1,13 @@
 import { FiMessageSquare, FiSend, FiThumbsUp } from "react-icons/fi";
 import { fetcher } from "src/utils/fetcher";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import comment from "@/utils/comment";
 import { useState } from "react";
 import { env } from "@/env.mjs";
 
-export default function Comment() {
-  const { query, isReady } = useRouter();
-  const { postID } = query;
-  const URL = env.NEXT_PUBLIC_GATEWAY + `comment/byPostID/${postID}`;
-  const { data: comments, error } = useSWR(isReady ? URL : null, fetcher);
+export default function Comment({ postID }: { postID: string }) {
+  const URL = env.NEXT_PUBLIC_GATEWAY + `/comment/byPostID/${postID}`;
+  const { data: comments, error } = useSWR(URL, fetcher);
 
   const [content, setContent] = useState("");
 

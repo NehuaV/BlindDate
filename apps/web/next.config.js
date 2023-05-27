@@ -8,6 +8,10 @@ module.exports = {
     outputFileTracingRoot: path.join(__dirname, "../../"),
   },
   images: {
-    domains: ["fastly.picsum.photos", "myprofilepage.com.au"],
+    domains: [
+      "fastly.picsum.photos",
+      "myprofilepage.com.au",
+      "blind-date-uploads.s3.eu-north-1.amazonaws.com",
+    ],
   },
 };

@@ -1,6 +1,8 @@
 import { Router } from "express";
 import * as service from "../service/index";
-
+import multer from "multer";
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 export const postRouter = () => {
   const router = Router();
 
@@ -13,10 +15,10 @@ export const postRouter = () => {
       return res.status(404).json({ message: "No posts found" });
     }
   });
-  router.post("/", async (req, res) => {
-    const post = await service.CreatePost(req.body);
+  router.post("/", upload.single("file"), async (req, res) => {
+    const post = await service.CreatePost(req.body, req.file);
     if (!post) {
-      return res.status(404).json({ message: "post not found" });
+      return res.status(404).json({ message: "post not created" });
     }
     return res.json({ post });
   });

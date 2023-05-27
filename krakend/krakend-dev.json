@@ -15,7 +15,9 @@
         "Content-Type",
         "Authorization",
         "Accept",
-        "Origin"
+        "Origin",
+        "Access-Control-Allow-Origin",
+        "Ngrok-Skip-Browser-Warning"
       ],
       "max_age": "12h",
       "allow_credentials": false,
@@ -28,9 +30,11 @@
   "endpoints": [
     {
       "endpoint": "/post",
+      "method": "GET",
       "backend": [
         {
           "host": "http://localhost:3003",
+          "method": "GET",
           "url_pattern": "/",
           "encoding": "json"
         }
@@ -43,6 +47,47 @@
         }
       }
     },
+
+    {
+      "endpoint": "/post/{id}",
+      "method": "GET",
+      "backend": [
+        {
+          "host": "http://localhost:3003",
+          "method": "GET",
+          "url_pattern": "/{id}",
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
+    },
+
+    {
+      "endpoint": "/post",
+      "method": "POST",
+      "backend": [
+        {
+          "host": "http://localhost:3003",
+          "method": "POST",
+          "url_pattern": "/",
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
+    },
+
     {
       "endpoint": "/comment",
       "backend": [
@@ -64,7 +109,7 @@
       "endpoint": "/comment/byPostID/{id}",
       "backend": [
         {
-          "host": "http://comment-service:3004",
+          "host": "http://localhost:3004",
           "url_pattern": "/byPostID/{id}",
           "encoding": "json"
         }

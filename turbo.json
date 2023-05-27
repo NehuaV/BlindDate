@@ -4,7 +4,7 @@
   "globalEnv": ["NODE_ENV"],
   "pipeline": {
     "build": {
-      "outputs": ["dist/**", ".next/**", "public/dist/**","!.next/cache/**"],
+      "outputs": ["dist/**", ".next/**", "public/dist/**", "!.next/cache/**"],
       "dependsOn": ["^build"],
       "env": [
         "NEXT_PUBLIC_URL",
@@ -17,6 +17,11 @@
         "AUTH0_ISSUER_BASE_URL",
         "AUTH0_CLIENT_ID",
         "AUTH0_CLIENT_SECRET",
+
+        "S3_BUCKET_NAME",
+        "S3_BUCKET_REGION",
+        "S3_ACCESS_KEY",
+        "S3_SECRET_ACCESS_KEY",
 
         "VERCEL_URL",
         "VERCEL",

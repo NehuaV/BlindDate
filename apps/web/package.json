@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^2.6.0",
+    "@aws-sdk/s3-request-presigner": "^3.335.0",
     "autoprefixer": "^10.4.14",
     "database": "*",
     "next": "13.2.3",
