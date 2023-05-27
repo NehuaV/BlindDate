@@ -33,8 +33,36 @@
           "url_pattern": "/",
           "encoding": "json"
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
     },
+
+    {
+      "endpoint": "/post/{id}",
+      "method": "GET",
+      "backend": [
+        {
+          "host": "http://post-service:3003",
+          "method": "GET",
+          "url_pattern": "/{id}",
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
+    },
+
     {
       "endpoint": "/post",
       "method": "POST",
@@ -45,67 +73,65 @@
           "url_pattern": "/",
           "encoding": "json"
         }
-      ]
-    },
-    {
-      "endpoint": "/comment",
-      "method": "GET",
-      "backend": [
-        {
-          "host": "http://comment-service:3004",
-          "method": "GET",
-          "url_pattern": "/",
-          "encoding": "json"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
         }
-      ]
+      }
     },
+
     {
       "endpoint": "/comment",
-      "method": "POST",
       "backend": [
         {
           "host": "http://comment-service:3004",
           "url_pattern": "/",
-          "method": "POST",
           "encoding": "json"
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
     },
     {
       "endpoint": "/comment/byPostID/{id}",
-      "method": "GET",
       "backend": [
         {
           "host": "http://comment-service:3004",
-          "method": "GET",
           "url_pattern": "/byPostID/{id}",
           "encoding": "json"
         }
-      ]
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
     },
     {
       "endpoint": "/user",
-      "method": "GET",
       "backend": [
         {
           "host": "http://user-service:3002",
-          "method": "GET",
-          "url_pattern": "/",
-          "encoding": "json"
+          "url_pattern": "/"
         }
-      ]
-    },
-    {
-      "endpoint": "/user",
-      "method": "POST",
-      "backend": [
-        {
-          "host": "http://user-service:3002",
-          "method": "POST",
-          "url_pattern": "/",
-          "encoding": "json"
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
         }
-      ]
+      }
     }
   ]
 }
