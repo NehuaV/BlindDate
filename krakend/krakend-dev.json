@@ -123,6 +123,25 @@
       }
     },
     {
+      "endpoint": "/comment",
+      "method": "POST",
+      "backend": [
+        {
+          "host": "http://localhost:3004",
+          "url_pattern": "/",
+          "method": "POST",
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
+    },
+    {
       "endpoint": "/user",
       "backend": [
         {
