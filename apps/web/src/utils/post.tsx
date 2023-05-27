@@ -2,9 +2,10 @@ const post = async (url: string, data: any) => {
   const response = await fetch(url, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json",
+      Authorization:
+        "Bearer " + (await fetch("/api/auth/token").then((res) => res.json())),
     },
-    body: JSON.stringify(data),
+    body: data,
   });
 
   if (!response.ok) {

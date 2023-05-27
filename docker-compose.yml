@@ -1,21 +1,21 @@
 version: "3"
 
 services:
-  web:
-    container_name: web
-    build:
-      context: .
-      dockerfile: ./apps/web/Dockerfile
-    image: web:latest
-    restart: always
-    ports:
-      - 3000:3000
-    networks:
-      - app_network
-    environment:
-      - NEXT_PUBLIC_POST_SERVICE_URL=http://post-service:3003/post
-      - NEXT_PUBLIC_USER_SERVICE_URL=http://user-service:3002/user
-      - NEXT_PUBLIC_COMMENT_SERVICE_URL=http://comment-service:3004/comment
+  # web:
+  #   container_name: web
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/web/Dockerfile
+  #   image: web:latest
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - app_network
+  #   environment:
+  #     - NEXT_PUBLIC_POST_SERVICE_URL=http://post-service:3003/post
+  #     - NEXT_PUBLIC_USER_SERVICE_URL=http://user-service:3002/user
+  #     - NEXT_PUBLIC_COMMENT_SERVICE_URL=http://comment-service:3004/comment
 
   # upload-service:
   #   container_name: upload-service

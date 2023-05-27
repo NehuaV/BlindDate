@@ -5,7 +5,7 @@ import { CgProfile } from "react-icons/cg";
 export default function Header() {
   return (
     <>
-      <header className="sticky top-0 z-10 flex justify-between bg-white p-2 shadow-md">
+      <header className="sticky top-0 z-10 flex items-center justify-between bg-white p-2 px-8 shadow-md">
         <Link href={"/home"}>Blind Date</Link>
         <div className="flex items-center gap-4">
           <Link href={"/post"}>
@@ -25,7 +25,12 @@ export default function Header() {
               }}
             />
           </Link>
-          <Link href={"/"}>LOGOUT HERE</Link>
+          <Link
+            className="rounded-lg bg-white p-2 text-center"
+            href={"/api/auth/logout"}
+          >
+            Logout
+          </Link>
         </div>
       </header>
     </>

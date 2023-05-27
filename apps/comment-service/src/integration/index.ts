@@ -26,7 +26,7 @@ export async function GetCommentsByPostId(id: string) {
         postID: id,
       },
       include: {
-        Like: true,
+        likes: true,
       },
     })
     .catch(() => {

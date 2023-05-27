@@ -1,10 +1,13 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Image from "next/image";
-import { SignInWithEmail } from "./SignInWithEmail";
-import { SingInWithGoogle } from "./SignInWithGoogle";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function Login() {
+  const { user, error, isLoading } = useUser();
+
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
   return (
     <>
       <Image
@@ -12,6 +15,7 @@ export default function Login() {
         quality={50}
         fill
         sizes="100vw"
+        unoptimized
         style={{ zIndex: -40, objectFit: "cover" }}
         alt={"Background image"}
       />
@@ -20,16 +24,25 @@ export default function Login() {
         alt={"Logo"}
         width={400}
         height={250}
+        unoptimized
         style={{ marginBottom: "1rem" }}
       />
 
-      <SignInWithEmail />
-
-      <SingInWithGoogle />
-
-      <Link href={"/register"} className="text-blue mb-4 text-center text-xl">
-        Are you a new user? Click here to register!
-      </Link>
+      {user ? (
+        <Link
+          className="rounded-lg bg-white p-4 text-center"
+          href={"/api/auth/logout"}
+        >
+          Logout
+        </Link>
+      ) : (
+        <Link
+          className="rounded-lg bg-white p-4 text-center"
+          href={"/api/auth/login?returnTo=/home"}
+        >
+          Login
+        </Link>
+      )}
     </>
   );
 }

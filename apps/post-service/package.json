@@ -14,12 +14,17 @@
     "preset": "jest-presets/jest/node"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.335.0",
+    "@aws-sdk/s3-request-presigner": "^3.335.0",
+    "aws-sdk": "^2.1381.0",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "database": "*",
     "express": "^4.17.1",
     "logger": "*",
     "morgan": "^1.10.0",
-    "database": "*"
+    "multer": "^1.4.5-lts.1",
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@types/body-parser": "^1.19.0",
@@ -27,6 +32,7 @@
     "@types/express": "^4.17.12",
     "@types/jest": "^26.0.22",
     "@types/morgan": "^1.9.2",
+    "@types/multer": "^1.4.7",
     "@types/node": "^15.12.2",
     "@types/supertest": "^2.0.11",
     "esbuild": "^0.14.38",

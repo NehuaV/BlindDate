@@ -10,6 +10,7 @@ interface PostProps {
   username: string;
   created_at: Date;
   status: string;
+  picture: string;
 }
 
 export default function PostPreview(props: PostProps) {

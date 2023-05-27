@@ -3,7 +3,6 @@ export type CreatePostSchema = {
   anonymous: boolean;
   title: string;
   content: string;
-  picture?: string | null;
   picture_desc?: string | null;
   status: string;
   created_at: Date;
@@ -11,4 +10,5 @@ export type CreatePostSchema = {
   deleted_at?: Date | null;
   topic?: string | null;
   userID: string;
+  picture: string | null;
 };

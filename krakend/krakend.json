@@ -5,10 +5,18 @@
       "allow_origins": ["*"],
       "allow_methods": ["GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"],
       "expose_headers": ["Content-Length", "Content-Type"],
-      "allow_headers": ["Accept-Language", "Content-Type", "Authorization", "Accept", "Origin"],
+      "allow_headers": [
+        "Accept-Language",
+        "Content-Type",
+        "Authorization",
+        "Accept",
+        "Origin",
+        "Access-Control-Allow-Origin",
+        "Ngrok-Skip-Browser-Warning"
+      ],
       "max_age": "12h",
-      "allow_credentials": false,
-      "debug": false
+      "allow_credentials": true,
+      "debug": true
     },
     "router": {
       "auto_options": true

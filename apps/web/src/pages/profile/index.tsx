@@ -2,15 +2,19 @@ import ProfileLayout from "@/layouts/ProfileLayout";
 
 import { FaRegEdit } from "react-icons/fa";
 
+import Image from "next/image";
+
 export default function ProfilePage() {
   return (
     <article className="mt-7 flex flex-row">
       <main className="w-1/3 flex-col">
         <div className=" rounded- justify-center border bg-gray-300 p-6">
           <div className=" mb-6 h-64">
-            <img
+            <Image
               src="https://myprofilepage.com.au/public/assets/images/new/home/monstar.gif"
               alt="User profile image"
+              height={500}
+              width={500}
               className="h-full w-full object-contain"
             />
           </div>
