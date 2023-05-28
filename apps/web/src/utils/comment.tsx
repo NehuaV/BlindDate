@@ -3,6 +3,8 @@ const comment = async (url: string, data: any) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      Authorization:
+        "Bearer " + (await fetch("/api/auth/token").then((res) => res.json())),
     },
     body: JSON.stringify(data),
   });
