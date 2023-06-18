@@ -101,6 +101,31 @@ This is the only way to install the gateway for now locally, check if that chang
 
 # Project Related Information
 
+## S3 bucket setup
+
+### Required libraries:
+
+Multer: https://www.npmjs.com/package/multer
+
+AWS S3 Client: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-s3/index.html
+
+S3 request presigner: https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_s3_request_presigner.html
+
+### Bucket and user creation:
+
+In order to create an S3 image/file bucket you need to have an AWS account. The requirements for it are to have a valid credit/debit card and they will debit 1 dollar to approve your AWS account. After that, you can easily create a bucket following the instructions in the S3 section. After successful bucket creation, you need to create a user. From the IAM section, you can easily create a user, again follow the instructions and default settings, but you need to set permission policies. You can easily give preset S3 permission to the user. After that, you need to get those 4 variables: 
+
+S3_BUCKET_NAME,
+
+S3_BUCKET_REGION,
+
+S3_ACCESS_KEY (From the created user),
+
+S3_SECRET_ACCESS_KEY (From the created user) and put them in the GitHub secrets or/and env file in the project. 
+
+After that, everything should be ready and the creation and retrieval of the images should be working. 
+
+
 ## Installing the Project
 
 To install clone the repo and run
