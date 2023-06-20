@@ -4,7 +4,12 @@
     "security/cors": {
       "allow_origins": ["*"],
       "allow_methods": ["GET", "HEAD", "POST", "PUT", "DELETE", "OPTIONS"],
-      "expose_headers": ["Content-Length", "Content-Type"],
+      "expose_headers": [
+        "Content-Length",
+        "Content-Type",
+        "Authorization",
+        "X-Request-ID"
+      ],
       "allow_headers": [
         "Accept-Language",
         "Content-Type",
@@ -44,46 +49,6 @@
     },
 
     {
-      "endpoint": "/post/reactions/{id}",
-      "method": "GET",
-      "backend": [
-        {
-          "host": "http://localhost:3003",
-          "method": "GET",
-          "url_pattern": "/reactions/{id}",
-          "encoding": "json"
-        }
-      ],
-      "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
-          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
-        }
-      }
-    },
-
-    {
-      "endpoint": "/post/react",
-      "method": "POST",
-      "backend": [
-        {
-          "host": "http://post-service:3003",
-          "method": "POST",
-          "url_pattern": "/react",
-          "encoding": "json"
-        }
-      ],
-      "extra_config": {
-        "auth/validator": {
-          "alg": "RS256",
-          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
-          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
-        }
-      }
-    },
-
-    {
       "endpoint": "/post/{id}",
       "method": "GET",
       "backend": [
@@ -91,6 +56,26 @@
           "host": "http://post-service:3003",
           "method": "GET",
           "url_pattern": "/{id}",
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
+    },
+
+    {
+      "endpoint": "/post/reactions/{id}",
+      "method": "GET",
+      "backend": [
+        {
+          "host": "http://post-service:3003",
+          "method": "GET",
+          "url_pattern": "/reactions/{id}",
           "encoding": "json"
         }
       ],
@@ -124,6 +109,26 @@
     },
 
     {
+      "endpoint": "/post/react",
+      "method": "POST",
+      "backend": [
+        {
+          "host": "http://post-service:3003",
+          "method": "POST",
+          "url_pattern": "/react",
+          "encoding": "json"
+        }
+      ],
+      "extra_config": {
+        "auth/validator": {
+          "alg": "RS256",
+          "audience": ["https://dev-5citnzhh5o3wou8l.eu.auth0.com/api/v2/"],
+          "jwk_url": "https://dev-5citnzhh5o3wou8l.eu.auth0.com/.well-known/jwks.json"
+        }
+      }
+    },
+
+    {
       "endpoint": "/comment",
       "backend": [
         {
@@ -140,12 +145,15 @@
         }
       }
     },
+
     {
-      "endpoint": "/comment/byPostID/{id}",
+      "endpoint": "/comment/reactions/{id}",
+      "method": "GET",
       "backend": [
         {
           "host": "http://comment-service:3004",
-          "url_pattern": "/byPostID/{id}",
+          "method": "GET",
+          "url_pattern": "/reactions/{id}",
           "encoding": "json"
         }
       ],
@@ -157,6 +165,7 @@
         }
       }
     },
+
     {
       "endpoint": "/comment/react",
       "method": "POST",
@@ -176,14 +185,13 @@
         }
       }
     },
+
     {
-      "endpoint": "/comment/reactions/{id}",
-      "method": "GET",
+      "endpoint": "/comment/byPostID/{id}",
       "backend": [
         {
           "host": "http://comment-service:3004",
-          "method": "GET",
-          "url_pattern": "/reactions/{id}",
+          "url_pattern": "/byPostID/{id}",
           "encoding": "json"
         }
       ],
