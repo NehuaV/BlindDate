@@ -51,7 +51,7 @@ export async function GetPosts() {
 
 export async function GetPostById(id: string) {
   const post = await prisma.GetPostById(id);
-
+  console.log("arereererhuiehrikeuhryiuehyriehuyiuehr", post);
   if (post) {
     if (!post.picture) {
       post.picture = null; // Provide a default value or set to null if picture is null
@@ -62,6 +62,7 @@ export async function GetPostById(id: string) {
       };
       const command = new GetObjectCommand(getObjectParams);
       const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+      console.log("arereererhuiehrikeuhryiuehyriehuyiuehr", url);
       post.picture = url;
     }
   }
@@ -102,7 +103,6 @@ export async function CreatePost(data: CreatePostSchema, file: any) {
     typeof data.anonymous === "boolean"
       ? data.anonymous
       : data.anonymous === "true";
-
   const postData: CreatePostSchema = {
     ...data,
     created_at: now,
