@@ -39,6 +39,7 @@ export async function CreatePost(data: CreatePostSchema) {
       data: {
         title: data.title,
         content: data.content,
+        picture: data.picture,
         picture_desc: data.picture_desc,
         anonymous: data.anonymous,
         status: data.status,
