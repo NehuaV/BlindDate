@@ -1,6 +1,6 @@
 import { createServer } from "./server";
-import { log } from "logger";
 import { postRouter } from "./routes";
+import { log } from "logger";
 
 const port = process.env.NEXT_PUBLIC_POST_SERVICE_URL?.split(":")[2] || 3003;
 const server = createServer();

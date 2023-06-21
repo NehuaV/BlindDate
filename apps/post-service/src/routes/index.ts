@@ -22,6 +22,23 @@ export const postRouter = () => {
     }
     return res.json({ post });
   });
+
+  router.post("/react", async (req, res) => {
+    const reaction = await service.PostReact(req.body);
+    if (!reaction) {
+      return res.status(404).json({ message: "reaction not created" });
+    }
+    return res.json({ reaction });
+  });
+
+  router.get("/reactions/:id", async (req, res) => {
+    const reactions = await service.GetReactionsByPostId(req.params.id);
+    if (!reactions) {
+      return res.status(404).json({ message: "reactions not found" });
+    }
+    return res.json({ reactions });
+  });
+
   // Dynamic routes
   router
     .route("/:id")

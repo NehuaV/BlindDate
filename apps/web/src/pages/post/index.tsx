@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import post from "src/utils/post";
 import Image from "next/image";
 import { env } from "@/env.mjs";
+import { useRouter } from "next/router";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function PostPage() {
   const [file, setFile] = useState<File | null>(null);
@@ -12,11 +14,16 @@ export default function PostPage() {
   const [content, setContent] = useState<string>("");
   const [picture_desc, setImageDescription] = useState<string>("");
   const [postedAnonymously, setPostedAnonymously] = useState(false);
+  const user = useUser();
+
+  console.log(user.user);
 
   const handleToggleAnonymity = (value: boolean) => {
     setAnonymous(value);
     setPostedAnonymously(true);
   };
+
+  const router = useRouter();
 
   const handleSubmit = async (
     e: React.FormEvent<HTMLFormElement>
@@ -35,6 +42,7 @@ export default function PostPage() {
     formData.append("picture_desc", picture_desc);
     formData.append("anonymous", anonymous.toString());
     formData.append("status", "ACTIVE");
+    formData.append("userEmail", user.user!.email!);
 
     if (file) {
       formData.append("file", file);
@@ -43,6 +51,12 @@ export default function PostPage() {
     try {
       await post(URL, formData);
       // Handle the result as needed
+
+      // Redirect to home page
+      router.push("/home");
+
+      // Display success alert
+      alert("Post successfully created");
     } catch (error) {
       console.error("Error:", error);
     }
@@ -68,7 +82,7 @@ export default function PostPage() {
   return (
     <article>
       <main>
-        <p className="py-7 text-center text-2xl ">CREATE POST</p>
+        <p className="py-7 text-center text-2xl">CREATE POST</p>
         <hr className="border border-black" />
         <form className="pt-3" method="post" onSubmit={handleSubmit}>
           <section>

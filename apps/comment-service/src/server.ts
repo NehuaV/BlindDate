@@ -12,6 +12,7 @@ export const createServer = () => {
     .use(json())
     .use(cors())
     .get("/healthz", (req, res) => {
+      res.set("Cache-Control", "s-maxage=600");
       return res.json({ ok: true });
     });
 

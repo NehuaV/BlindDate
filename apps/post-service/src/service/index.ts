@@ -68,6 +68,16 @@ export async function GetPostById(id: string) {
   return post;
 }
 
+export async function PostReact(obj: any) {
+  const reaction = await prisma.PostReact(obj);
+  return reaction;
+}
+
+export async function GetReactionsByPostId(id: string) {
+  const reactions = await prisma.GetReactionsByPostId(id);
+  return reactions;
+}
+
 export async function CreatePost(data: CreatePostSchema, file: any) {
   const now = new Date();
   let imageName;
@@ -97,7 +107,7 @@ export async function CreatePost(data: CreatePostSchema, file: any) {
     ...data,
     created_at: now,
     updated_at: now,
-    userID: "642abeeb6e7160c651969049",
+    userEmail: data.userEmail,
     picture: imageName || null,
     anonymous: isAnonymous as boolean,
   };

@@ -9,6 +9,6 @@ export type CreatePostSchema = {
   updated_at: Date;
   deleted_at?: Date | null;
   topic?: string | null;
-  userID: string;
+  userEmail: string;
   picture: string | null;
 };

@@ -4,29 +4,33 @@ import useSWR from "swr";
 import comment from "@/utils/comment";
 import { useState } from "react";
 import { env } from "@/env.mjs";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import reactToComment from "@/utils/reactToComment";
+import { GetReactionsByCommentId } from "@/hooks/GetReactionsByCommentId";
+import CommentFooter from "./CommentFooter";
 
 export default function Comment({ postID }: { postID: string }) {
   const URL = env.NEXT_PUBLIC_GATEWAY + `/comment/byPostID/${postID}`;
-  const { data: comments, error } = useSWR(URL, fetcher);
-
+  const { data: comments, error, mutate, isLoading } = useSWR(URL, fetcher);
+  const user = useUser();
   const [content, setContent] = useState("");
 
-  if (error) return <div>Error: {error?.message}</div>;
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>Error...</div>;
 
   const submitComment = async (
     e: React.FormEvent<HTMLFormElement>
   ): Promise<void> => {
     e.preventDefault();
     const URL = env.NEXT_PUBLIC_GATEWAY + "/comment";
-    if (URL) {
-      const created_at = new Date().toISOString();
-      await comment(URL, {
-        content,
-        created_at,
-        postID,
-      });
-    }
-    window.location.reload();
+
+    await comment(URL, {
+      content,
+      userEmail: user.user?.email,
+      postID,
+    });
+
+    mutate();
   };
 
   return (
@@ -62,11 +66,12 @@ export default function Comment({ postID }: { postID: string }) {
       </form>
       <section>
         {comments ? (
-          comments?.comments.map((comment: any) => {
+          comments?.comments.map((comment: any, index: number) => {
             return (
               <article className="border-1 mb-2 border" key={comment.id}>
                 <header className="flex gap-4 border-b-2 p-2">
-                  <span>User {comment?.userId}</span>
+                  <span>{comment?.user.name}</span>
+
                   <span>
                     Created at:{" "}
                     {new Intl.DateTimeFormat("nl-NL").format(
@@ -75,13 +80,12 @@ export default function Comment({ postID }: { postID: string }) {
                   </span>
                 </header>
                 <main className="border-b-2 p-2">{comment.content}</main>
-                <footer className="flex gap-4 p-2">
-                  <button>Like</button>
-                  <button>Dislike</button>
-                </footer>
+                <CommentFooter key={index} comment={comment} />
               </article>
             );
           })
+        ) : error ? (
+          <div>Error: {error?.message}</div>
         ) : (
           <div className="sr-only">Loading...</div>
         )}

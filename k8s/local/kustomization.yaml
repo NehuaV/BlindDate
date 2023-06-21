@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - post-service-deployment.yaml
+  - comment-service-deployment.yaml
+  - user-service-deployment.yaml
+  - krakend-deployment.yaml
+  - api-gateway-ingress.yaml
+  - secrets.yaml
+
+images:
+  - name: g3Registry.azurecr.io/post-service
+    newName: g3Registry.azurecr.io/post-service
+    newTag: 1ee6267db9b165af18b559e4ecd937e5978900c8
+  - name: g3Registry.azurecr.io/comment-service
+    newName: g3Registry.azurecr.io/comment-service
+    newTag: 1ee6267db9b165af18b559e4ecd937e5978900c8
+  - name: g3Registry.azurecr.io/user-service
+    newName: g3Registry.azurecr.io/user-service
+    newTag: 1ee6267db9b165af18b559e4ecd937e5978900c8
+  - name: g3Registry.azurecr.io/krakend
+    newName: g3Registry.azurecr.io/krakend
+    newTag: 1ee6267db9b165af18b559e4ecd937e5978900c8

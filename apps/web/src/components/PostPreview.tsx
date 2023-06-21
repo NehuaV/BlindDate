@@ -4,17 +4,11 @@ import { IoBookmarkOutline } from "react-icons/io5";
 import { BiUserCircle } from "react-icons/bi";
 
 interface PostProps {
-  id: string;
-  key: unknown;
-  title: string;
-  username: string;
-  created_at: Date;
-  status: string;
-  picture: string;
+  post: any;
 }
 
 export default function PostPreview(props: PostProps) {
-  const postDate = new Date(props.created_at);
+  const postDate = new Date(props.post.created_at);
   let displayDate;
   const currentDate = new Date();
 
@@ -49,8 +43,11 @@ export default function PostPreview(props: PostProps) {
     displayDate = yearsDiff + " years ago";
   }
 
+  const handleLike = () => {};
+
+  const handleDislike = () => {};
   return (
-    <Link href={`/home/${props.id}`}>
+    <Link href={`/home/${props.post.id}`}>
       <article className="mx-3 mb-3 rounded-xl border border-solid border-gray-200 bg-white px-5 transition ease-in-out hover:border-gray-100 hover:shadow-lg">
         <h1 className="mt-2 flex items-center text-xs">
           Posted by:
@@ -60,54 +57,26 @@ export default function PostPreview(props: PostProps) {
               marginLeft: "0.5rem",
             }}
           />
-          <p className="ml-1 mr-3 text-sm font-bold">{props.username}</p>
+          <p className="ml-1 mr-3 text-sm font-bold">
+            {props.post.anonymous ? "Anonymous" : props.post.author.name}
+          </p>
           <span className="text-gray-500">{displayDate}</span>
           <span className="ml-auto flex flex-row text-lg">
             <p className="mt-1 flex items-center text-xs">Status:</p>
             <p
               className={`px-2 ${
-                props.status === "ACTIVE"
+                props.post.status === "ACTIVE"
                   ? "text-green-600"
-                  : props.status === "URGENT"
+                  : props.post.status === "URGENT"
                   ? "text-yellow-500"
                   : "text-red-600"
               } `}
             >
-              {props.status}
+              {props.post.status}
             </p>
           </span>
         </h1>
-        <div className="my-3 text-base">{props.title}</div>
-        <section className="mb-3 flex w-full flex-row font-semibold">
-          <button className="flex items-center" aria-label="Like Button">
-            <AiOutlineLike
-              style={{
-                fontSize: "1.5rem",
-              }}
-            />
-            <p className="mx-1">Like</p>
-          </button>
-          <button className="flex items-center" aria-label="Dislike Button">
-            <AiOutlineDislike
-              style={{
-                fontSize: "1.5rem",
-                marginLeft: "0.5rem",
-              }}
-            />
-            <p className="mx-1">Dislike</p>
-          </button>
-          <button
-            className="ml-auto flex items-center"
-            aria-label="Save Button"
-          >
-            <IoBookmarkOutline
-              style={{
-                fontSize: "1.5rem",
-              }}
-            />
-            <p className="mx-1">Save</p>
-          </button>
-        </section>
+        <div className="mb-3 text-base">{props.post.title}</div>
       </article>
     </Link>
   );
