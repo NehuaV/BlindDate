@@ -5,7 +5,7 @@ export default function HomeFilterButton({ selected, onClick, children }: any) {
     <>
       {selected ? (
         <button
-          className="mx-2 rounded-2xl bg-gray-400 p-1 px-3 "
+          className="mx-2 rounded-2xl bg-blue-300 p-1 px-3"
           onClick={onClick}
         >
           {children}

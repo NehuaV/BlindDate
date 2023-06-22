@@ -68,26 +68,35 @@ export default function Comment({ postID }: { postID: string }) {
         {comments ? (
           comments?.comments.map((comment: any, index: number) => {
             return (
-              <article className="border-1 mb-2 border" key={comment.id}>
-                <header className="flex gap-4 border-b-2 p-2">
-                  <span>{comment?.user.name}</span>
-
-                  <span>
+              <article
+                className="mb-6 rounded-lg border shadow-md"
+                key={comment.id}
+              >
+                <header className="flex items-center justify-between border-b p-4">
+                  <div className="flex items-center">
+                    <div className="h-8 w-8 rounded-full bg-gray-200"></div>
+                    <span className="ml-2 font-semibold">
+                      {comment?.user.name}
+                    </span>
+                  </div>
+                  <span className="text-sm text-gray-500">
                     Created at:{" "}
                     {new Intl.DateTimeFormat("nl-NL").format(
                       new Date(comment?.created_at)
                     )}
                   </span>
                 </header>
-                <main className="border-b-2 p-2">{comment.content}</main>
-                <CommentFooter key={index} comment={comment} />
+                <main className="p-4">
+                  <p className="text-gray-800">{comment.content}</p>
+                </main>
+                <CommentFooter comment={comment} />
               </article>
             );
           })
         ) : error ? (
-          <div>Error: {error?.message}</div>
+          <div className="text-red-500">Error: {error?.message}</div>
         ) : (
-          <div className="sr-only">Loading...</div>
+          <div className="text-gray-500">Loading...</div>
         )}
       </section>
     </>
