@@ -13,7 +13,7 @@ export default function PostLayout({ children, ...props }: BaseLayoutProps) {
       </Head>
       <div className="flex h-screen flex-col bg-slate-50">
         <Header />
-        <div className="mx-0 flex bg-white md:mx-56">
+        <div className="mx-0 flex md:mx-56">
           <main className="w-full">{children}</main>
         </div>
       </div>

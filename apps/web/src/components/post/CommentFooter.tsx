@@ -2,6 +2,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { env } from "@/env.mjs";
 import { GetReactionsByCommentId } from "@/hooks/GetReactionsByCommentId";
 import reactToComment from "@/utils/reactToComment";
+import { AiFillLike, AiFillDislike } from "react-icons/ai";
 
 export default function CommentFooter(comment: any) {
   const user = useUser();
